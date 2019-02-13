@@ -9,7 +9,34 @@ html {
 body {
   margin: 0;
   min-height: 100%;
-  /* display: flex;
+  background-color: #3993dd;
+}
+
+.title {
+  color: #f4ebe8;
+}
+.search-term {
+  margin: 1rem 15rem 1rem 15rem;
+}
+
+.search {
+  margin: 1rem 20rem 1rem 20rem;
+}
+
+.GUI {
+  display: flex;
+  text-align: center;
   justify-content: center;
-  flex-wrap: wrap; */
+  justify-content: space-around;
+  flex-wrap: wrap;
+  flex-direction: column;
+  margin: 5rem 20rem 5rem 20rem;
+}
+
+.weather-data {
+  color: #f4ebe8;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  justify-content: space-around;
 }

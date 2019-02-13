@@ -8,13 +8,14 @@ let currentWeather = {}
 const getWeather = () => {
   const searchTerm = document.querySelector('.search-term').value
   console.log(searchTerm)
-  const requestLink =
-    'https://api.openweathermap.org/data/2.5/weather?q=' +
-    searchTerm +
-    '&appid=9ea962feec97cdeba54e78a4f4408b88'
-  console.log(requestLink)
+  // Creates a parameter to swap the q with zip for either search
+  let parameter = 'zip'
+  // Determine is the searchTerm is a number or not and if not swap parameter to q
+  if (isNaN(searchTerm)) {
+    parameter = 'q'
+  }
   fetch(
-    `https://api.openweathermap.org/data/2.5/weather?q=${searchTerm}&appid=9ea962feec97cdeba54e78a4f4408b88&units=imperial`
+    `https://api.openweathermap.org/data/2.5/weather?${parameter}=${searchTerm}&appid=9ea962feec97cdeba54e78a4f4408b88&units=imperial`
   )
     .then(resp => {
       return resp.json()
@@ -22,10 +23,15 @@ const getWeather = () => {
     .then(weatherData => {
       console.log(weatherData)
       currentWeather = weatherData
-      document.querySelector('.weather-description').textContent =
-        weatherData.weather[0].description
-      document.querySelector('.weather-temp').textContent =
-        weatherData.main.temp
+      const _h2Weather = document.createElement('h2')
+      const _h2Name = document.createElement('h2')
+      _h2Name.textContent = weatherData.name + ':'
+      document.querySelector('.weather-data').appendChild(_h2Name)
+      _h2Weather.textContent = weatherData.weather[0].description
+      document.querySelector('.weather-data').appendChild(_h2Weather)
+      const _h2Temp = document.createElement('h2')
+      _h2Temp.textContent = weatherData.main.temp + '°F'
+      document.querySelector('.weather-data').appendChild(_h2Temp)
     })
   // Parse Results
   // add current weather to HTML
