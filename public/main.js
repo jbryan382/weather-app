@@ -22,10 +22,10 @@ const getWeather = () => {
     .then(weatherData => {
       console.log(weatherData)
       currentWeather = weatherData
-      document.querySelector('.weather-description').textContent = weatherData(
-        0
-      ).description
-      document.querySelector('.weather-temp').textContent = weatherData(1).temp
+      document.querySelector('.weather-description').textContent =
+        weatherData.weather[0].description
+      document.querySelector('.weather-temp').textContent =
+        weatherData.main.temp
     })
   // Parse Results
   // add current weather to HTML
